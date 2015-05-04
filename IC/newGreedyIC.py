@@ -50,7 +50,7 @@ def findCCs(G, Ep):
                     component.extend(E[neighbor].keys())
     return CCs
 
-def newGreedyIC (G, k, Ep, R = 20):
+def newGreedyIC (G, k, Ep, R = 70):
 
     S = []
     for i in range(k):
@@ -60,7 +60,7 @@ def newGreedyIC (G, k, Ep, R = 20):
         for j in range(R):
             print j,
             CCs = findCCs(G, Ep)
-            for CC in CCs:
+            for CC in CCs.values():
                 for v in S:
                     if v in CC:
                         break
@@ -176,8 +176,8 @@ if __name__ == "__main__":
 #            data = line.split()
 #            Ep[(int(data[0]), int(data[1]))] = float(data[2])
 
-    I = 1000
+    I = 10000
 
-    S = newGreedyIC(G, 10, Ep)
+    S = newGreedyIC(G, 50, Ep)
     print S
     print avgIAC(G, S, Ep, I)
