@@ -4,10 +4,12 @@
 '''
 from __future__ import division
 from copy import deepcopy # copy graph object
-from random import random
+#from random import random
+import random
 from priorityQueue import PriorityQueue as PQ
 import networkx as nx
 from runIAC import avgIAC
+from collections import defaultdict
 
 
 def bfs(E, S):
@@ -154,7 +156,7 @@ if __name__ == "__main__":
     import time
     start = time.time()
 
-    G = nx.read_gpickle("../../graphs/hep.gpickle")
+    G = nx.read_gpickle("../graphs/hep.gpickle")
     print 'Read graph G'
     print time.time() - start
 
@@ -168,11 +170,11 @@ if __name__ == "__main__":
         ep_model = "degree"
 
     # get propagation probabilities
-    Ep = dict()
-    with open("Ep_hep_%s1.txt" %ep_model) as f:
-        for line in f:
-            data = line.split()
-            Ep[(int(data[0]), int(data[1]))] = float(data[2])
+    Ep = defaultdict(lambda: .01)
+#    with open("Ep_hep_%s1.txt" %ep_model) as f:
+#        for line in f:
+#            data = line.split()
+#            Ep[(int(data[0]), int(data[1]))] = float(data[2])
 
     I = 1000
 
